@@ -4,7 +4,7 @@ import os
 statePopulations = {"california": 39510000, "florida": 21480000, "new york": 19450000, "texas": 29000000, "oklahoma":3957000}
 
 
-def readLines(stateCsv, output,state):
+def readLines(stateCsv, output, state):
     rows = []
     field = ["Date", "Case increase (per 100,000)"]
 
@@ -19,8 +19,11 @@ def readLines(stateCsv, output,state):
             newlist = []
 
             if i != 0:
+                casesPerDay = int(k[22])
+
                 statePopDivided = statePopulations[state]/100000
-                per100 = int(k[22])/statePopDivided
+
+                per100 = casesPerDay/statePopDivided
 
                 newlist.append(k[0])
 
