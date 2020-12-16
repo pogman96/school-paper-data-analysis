@@ -97,9 +97,8 @@ def sevenDayCSV(inputList, outputLocation):
         writer.writerow(field)
         writer.writerows(inputList)
 
-
-dir = "C:/Users/doget/PycharmProjects/data/parsed/"
-baseDir = "C:/Users/doget/PycharmProjects/data/raw historical/"
+dir = "parsed/"
+baseDir = "raw historical/"
 readLines(baseDir + "california-history.csv", dir + "/cali.csv", "california")
 readLines(baseDir + "texas-history.csv", dir + "/texas.csv", "texas")
 readLines(baseDir + "new-york-history.csv", dir + "/ny.csv", "new york")
@@ -119,8 +118,7 @@ texasNewList = formNewDataSet(baseDir + "texas-history.csv", dir + "texas.csv", 
 
 newListsForCSV = [caliNewList, florNewList, nyNewList, okNewList, texasNewList]
 fileNames = ["cali7day.csv", "florida7day.csv", "ny7day.csv", "ok7day.csv", "texas7day.csv"]
-directory = "C:/Users/doget/PycharmProjects/data/7day-average/"
+directory = "7day-average/"
 
 for i in range(len(newListsForCSV)):
     sevenDayCSV(newListsForCSV[i], directory + fileNames[i])
-
