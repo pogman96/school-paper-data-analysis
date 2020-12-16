@@ -20,4 +20,4 @@
  3. Run 'pip install plotly' and 'pip install pandas'
  4. Clone the testing branch, and extract to a folder
  5. Run main.py by double clicking to parse and process data
- 6. Run visaulGraph.py by double clicking to recieve interactive graphs
+ 6. Run visualGraph.py by double clicking to select interactive graphs
