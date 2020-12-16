@@ -1,8 +1,10 @@
 import csv
 import os
 
+statePopulations = {"california": 39510000, "florida": 21480000, "new york": 19450000, "texas": 29000000, "oklahoma":3957000}
 
-def readLines(stateCsv, output):
+
+def readLines(stateCsv, output,state):
     rows = []
     field = ["Date", "Case increase (per 100,000)"]
 
@@ -17,7 +19,8 @@ def readLines(stateCsv, output):
             newlist = []
 
             if i != 0:
-                per100 = int(k[22])/100000
+                statePopDivided = statePopulations[state]/100000
+                per100 = int(k[22])/statePopDivided
 
                 newlist.append(k[0])
 
@@ -77,8 +80,8 @@ def linkAverages(dates, newValues):
     return finalList
 
 
-def formNewDataSet(originalCsv, outputLocation):
-    lol = linkAverages(getAllDates(readLines(originalCsv, outputLocation)), movingAverage(getAllDataValues(readLines(originalCsv, outputLocation))))
+def formNewDataSet(originalCsv, outputLocation, state):
+    lol = linkAverages(getAllDates(readLines(originalCsv, outputLocation, state)), movingAverage(getAllDataValues(readLines(originalCsv, outputLocation, state))))
     return lol
 
 
@@ -94,21 +97,21 @@ def sevenDayCSV(inputList, outputLocation):
 
 dir = "C:/Users/doget/PycharmProjects/data/parsed/"
 baseDir = "C:/Users/doget/PycharmProjects/data/raw historical/"
-readLines(baseDir + "california-history.csv", dir + "/cali.csv")
-readLines(baseDir + "texas-history.csv", dir + "/texas.csv")
-readLines(baseDir + "new-york-history.csv", dir + "/ny.csv")
-readLines(baseDir + "oklahoma-history.csv", dir + "/oklahoma.csv")
-readLines(baseDir + "florida-history.csv", dir + "/florida.csv")
+readLines(baseDir + "california-history.csv", dir + "/cali.csv", "california")
+readLines(baseDir + "texas-history.csv", dir + "/texas.csv", "texas")
+readLines(baseDir + "new-york-history.csv", dir + "/ny.csv", "new york")
+readLines(baseDir + "oklahoma-history.csv", dir + "/oklahoma.csv", "oklahoma")
+readLines(baseDir + "florida-history.csv", dir + "/florida.csv", "florida")
 
-caliNewList = formNewDataSet(baseDir + "california-history.csv", dir + "cali.csv")
+caliNewList = formNewDataSet(baseDir + "california-history.csv", dir + "cali.csv", "california")
 
-florNewList = formNewDataSet(baseDir + "florida-history.csv", dir + "florida.csv")
+florNewList = formNewDataSet(baseDir + "florida-history.csv", dir + "florida.csv", "florida")
 
-nyNewList = formNewDataSet(baseDir + "new-york-history.csv", dir + "ny.csv")
+nyNewList = formNewDataSet(baseDir + "new-york-history.csv", dir + "ny.csv", "new york")
 
-okNewList = formNewDataSet(baseDir + "oklahoma-history.csv", dir + "oklahoma.csv")
+okNewList = formNewDataSet(baseDir + "oklahoma-history.csv", dir + "oklahoma.csv", "oklahoma")
 
-texasNewList = formNewDataSet(baseDir + "texas-history.csv", dir + "texas.csv")
+texasNewList = formNewDataSet(baseDir + "texas-history.csv", dir + "texas.csv", "texas")
 
 
 newListsForCSV = [caliNewList, florNewList, nyNewList, okNewList, texasNewList]
