@@ -16,8 +16,9 @@
 
 # Step by step replication
  1. Install python version 3+
- 2. Open command prompt
- 3. Run 'pip install plotly' and 'pip install pandas'
+ 2. Navigate to python install folder and then double click the "Scripts" folder
+ example path("C:\Users\Name\AppData\Local\Programs\Python\Python39\Scripts")
+ 3. Open windows powershell by shift-rightclicking empty space, then type 'pip install plotly' and 'pip install pandas' seperately, pressing enter in between uses
  4. Clone the testing branch, and extract to a folder
  5. Run main.py by double clicking to parse and process data
  6. Run visualGraph.py by double clicking to select interactive graphs
